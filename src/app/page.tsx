@@ -20,13 +20,11 @@ interface Props {}
 
 const page: React.FC<Props> = () => {
   // console.log(valeoImg);
-  const groupList = [
+  const expList = [
     { obj: valeoExp, img: valeoImg },
     { obj: aliExp, img: aliImg },
-    { obj: projIFA },
-    { obj: projGP },
-    { obj: projEZ },
   ];
+  const projList = [{ obj: projIFA }, { obj: projGP }, { obj: projEZ }];
 
   const [open, setOpen] = useState("close");
   const [imgSrc, setImgSrc] = useState<string | null>(null);
@@ -42,13 +40,16 @@ const page: React.FC<Props> = () => {
       <div className="leftSide">
         <h1 className="mb20 white">Kino Jiang</h1>
         <h2 className="mb20 white">Software engineer</h2>
-        <p>
+        <p style={{ width: "100%" }}>
           Start with the basics, embrace the challenges, and grow into a skilled
           IT professional.
         </p>
-        <Nav text="About" positionYMin={0} positionYMax={600}></Nav>
-        <Nav text="Experience" positionYMin={600} positionYMax={1500}></Nav>
-        <Nav text="Project" positionYMin={1500} positionYMax={3500}></Nav>
+        <nav className="nav_container">
+          <Nav text="About" positionYMin={0} positionYMax={500}></Nav>
+          <Nav text="Experience" positionYMin={500} positionYMax={1100}></Nav>
+          <Nav text="Project" positionYMin={1100} positionYMax={3500}></Nav>
+        </nav>
+
         <div className="linkDiv flex ">
           <a href="https://github.com/KinoOfficial" target="_blank">
             <FaGithub className="icon" />
@@ -98,6 +99,7 @@ const page: React.FC<Props> = () => {
       </div>
       <div className="rightSide">
         <div className="about">
+          <h2 className="nav_title">About</h2>
           <p className="mb20">
             Graduated from the University of New South Wales (UNSW) with a major
             in Information Technology, I am skilled in front-end technologies
@@ -132,10 +134,21 @@ const page: React.FC<Props> = () => {
           </p>
         </div>
         <div className="experience">
-          {groupList.map((value, index) => {
+          <h2 className="nav_title">Experience</h2>
+          {expList.map((value, index) => {
             return (
               <div key={index}>
                 <Group obj={value.obj} img={value.img}></Group>
+              </div>
+            );
+          })}
+        </div>
+        <div className="project">
+          <h2 className="nav_title">Project</h2>
+          {projList.map((value, index) => {
+            return (
+              <div key={index}>
+                <Group obj={value.obj}></Group>
               </div>
             );
           })}

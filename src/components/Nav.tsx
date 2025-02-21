@@ -48,7 +48,7 @@ const Nav: React.FC<Props> = (Props) => {
       ></div>
       <div className="nav_txt bold" style={{ color: color }}>
         {Props.text}
-        {scrollY}
+        {/* {scrollY} */}
       </div>
     </a>
   );

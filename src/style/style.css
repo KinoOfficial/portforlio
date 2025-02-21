@@ -24,12 +24,11 @@ body {
   margin-bottom: 20px;
 }
 .global {
-  display: flex;
   padding-top: 50px;
   padding-left: 50px;
 }
 .leftSide {
-  width: 50%;
+  width: 30%;
   height: 100vh;
   position: fixed;
 }
@@ -37,10 +36,10 @@ body {
 .leftSide h1 {
   font-size: 48px;
 }
-.leftSide p {
-  margin-bottom: 85px;
-}
 
+.nav_container {
+  margin-top: 80px;
+}
 .line {
   height: 2px;
   width: 20px;
@@ -56,7 +55,7 @@ body {
 }
 
 .linkDiv {
-  margin-top: 130px;
+  margin-top: 100px;
 }
 
 .icon {
@@ -67,8 +66,22 @@ body {
 
 .rightSide {
   position: absolute;
-  width: 650px;
+  width: 40%;
   right: 100px;
+}
+
+.nav_title {
+  display: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.experience {
+  margin-top: 100px;
+}
+
+.project {
+  margin-top: 100px;
 }
 
 .highlight {
@@ -78,7 +91,6 @@ body {
 
 .group {
   /* background-color: blue; */
-  margin-top: 100px;
   border-radius: 10px;
   padding: 20px;
   width: 100%;
@@ -138,4 +150,34 @@ body {
 
 .icon:hover {
   fill: #c8d2eb;
+}
+
+@media (max-width: 900px) {
+  .leftSide {
+    position: inherit;
+    height: auto;
+    width: 100%;
+    /* margin-bottom: 20px; */
+  }
+
+  .linkDiv {
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  .rightSide {
+    position: inherit;
+    width: 100%;
+    right: auto;
+    margin-top: 20px;
+  }
+
+  .nav_container {
+    display: none;
+  }
+
+  .nav_title {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
 }
