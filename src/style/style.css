@@ -24,17 +24,14 @@ body {
   margin-bottom: 20px;
 }
 .global {
-  padding-top: 100px;
   display: flex;
-  height: 100vh;
+  padding-top: 50px;
+  padding-left: 50px;
 }
 .leftSide {
-  /* background-color: yellow; */
   width: 50%;
   height: 100vh;
   position: fixed;
-  left: 120px;
-  float: left;
 }
 
 .leftSide h1 {
@@ -70,9 +67,8 @@ body {
 
 .rightSide {
   position: absolute;
-  right: 120px;
   width: 650px;
-  height: 200px;
+  right: 100px;
 }
 
 .highlight {
