@@ -1,95 +1,161 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React, { useEffect, useState } from "react";
+import "../style/style.css";
+import Nav from "../components/Nav";
+import Group from "../components/Group";
+import { valeoExp, aliExp, projIFA, projGP, projEZ } from "../const/index";
+import valeoImg from "../img/valeo-logo.jpg";
+import aliImg from "../img/ali.png";
+import { FaGithub, FaQq } from "react-icons/fa";
+import { IoIosDocument } from "react-icons/io";
+import { IoLogoWechat } from "react-icons/io5";
+import { Dialog, DialogContent, Typography } from "@mui/material";
+import wechatImg from "../img/wechatQR.pic.jpg";
+import qqImg from "../img/qqQR.pic.jpg";
+import { MdEmail } from "react-icons/md";
 
-export default function Home() {
+// import { FaQq } from "react-icons/fa";
+
+interface Props {}
+
+const page: React.FC<Props> = () => {
+  // console.log(valeoImg);
+  const groupList = [
+    { obj: valeoExp, img: valeoImg },
+    { obj: aliExp, img: aliImg },
+    { obj: projIFA },
+    { obj: projGP },
+    { obj: projEZ },
+  ];
+
+  const [open, setOpen] = useState("close");
+  const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const [contactTxt, setContactTxt] = useState("");
+  const handleClose = () => {
+    setOpen("close");
+    setImgSrc(null);
+    console.log(open);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+    <div className="global">
+      <div className="leftSide">
+        <h1 className="mb20 white">Kino Jiang</h1>
+        <h2 className="mb20 white">Software engineer</h2>
+        <p>
+          Start with the basics, embrace the challenges, and grow into a skilled
+          IT professional.
+        </p>
+        <Nav text="About" positionYMin={0} positionYMax={600}></Nav>
+        <Nav text="Experience" positionYMin={600} positionYMax={1500}></Nav>
+        <Nav text="Project" positionYMin={1500} positionYMax={3500}></Nav>
+        <div className="linkDiv flex ">
+          <a href="https://github.com/KinoOfficial" target="_blank">
+            <FaGithub className="icon" />
+          </a>
+          <a target="_blank" href="/file/resume.pdf">
+            <IoIosDocument className="icon" />
           </a>
           <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
+            onClick={() => {
+              setOpen("wechat");
+              setImgSrc(wechatImg.src);
+              setContactTxt("微信号:jjy19960930");
+            }}
           >
-            Read our docs
+            <IoLogoWechat className="icon" />
+          </a>
+          <a
+            target="_blank"
+            onClick={() => {
+              setOpen("qq");
+              setImgSrc(qqImg.src);
+              setContactTxt("QQ号:740258072");
+            }}
+          >
+            <FaQq className="icon" />
+          </a>
+          <a
+            target="_blank"
+            onClick={() => {
+              setOpen("email");
+              setContactTxt("email:kinojiang930@gmail.com");
+            }}
+          >
+            <MdEmail className="icon" />
           </a>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <Dialog open={open == "close" ? false : true} onClose={handleClose}>
+          <DialogContent>
+            {/* 显示二维码 */}
+            {imgSrc && <img src={imgSrc} height={500} />}
+
+            {/* 显示一些信息 */}
+            <Typography variant="body1">{contactTxt}</Typography>
+          </DialogContent>
+        </Dialog>
+      </div>
+      <div className="rightSide">
+        <div className="about">
+          <p className="mb20">
+            Graduated from the University of New South Wales (UNSW) with a major
+            in Information Technology, I am skilled in front-end technologies
+            such as{" "}
+            <span className="highlight">JavaScript, TypeScript, and React</span>
+            .I have knowledge of back-end tools as well ,including{" "}
+            <span className="highlight">
+              Express with Node.js and Django with Python.
+            </span>
+            For database,I have experience of using SQL and NoSQl database such
+            as <span className="highlight">MySql and MongoDB.</span>
+            Additionally, I am proficient in{" "}
+            <span className="highlight">Chinese and English</span> and have a
+            working knowledge of{" "}
+            <span className="highlight">Japanese and Korean,</span> which allows
+            me to communicate across different languages and cultures
+            effectively.
+          </p>
+          <p className="mb20">
+            Currently, I am looking for a position as a{" "}
+            <span className="highlight">Front-End or Full Stack Engineer</span>{" "}
+            and hope to gain hands-on project experience and deepen my skills
+            through my work.
+          </p>
+
+          <p className="mb20">
+            In my spare time, I’m usually traveling, reading, and playing
+            games.I also enjoy learning foreign languages as a way to better
+            understand the traditions, history, and way of life in different
+            countries. In the future, I aspire to visit more countries and
+            immerse myself in diverse cultural environments.
+          </p>
+        </div>
+        <div className="experience">
+          {groupList.map((value, index) => {
+            return (
+              <div key={index}>
+                <Group obj={value.obj} img={value.img}></Group>
+              </div>
+            );
+          })}
+        </div>
+        <p className="projIntro">
+          Thank you for reading till the end! This website design is inspired by
+          Brittany Chiang{" "}
+          <a
+            href="https://brittanychiang.com/#projects"
+            target="_blank"
+            className="highlight"
+          >
+            (https://brittanychiang.com/#projects)
+          </a>
+          , coded in Visual Studio Code,built with Next.js, and deployed with
+          Vercel.
+        </p>
+      </div>
     </div>
   );
-}
+};
+
+export default page;
